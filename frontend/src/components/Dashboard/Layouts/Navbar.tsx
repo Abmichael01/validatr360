@@ -1,23 +1,8 @@
-// import { useLogout } from '@/api/mutations'
 import ThemeToggle from '@/components/others/ThemeToggle'
-// import { useAuthStore } from '@/stores/authStore'
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import React from 'react'
 
 const Navbar: React.FC = () => {
-  // const { mutate } = useLogout()
-  // const { logout, user } = useAuthStore()
-
-  // const logoutUser = () => {
-  //   mutate(undefined, {
-  //     onSuccess: () => {
-  //       logout()
-  //       navigate("/auth/login", { replace: true })
-  //     }
-  //   })
-  // }
-  
-
   return (
     <div className="border-b py-4 px-5 flex items-center justify-between">
       <SidebarTrigger />

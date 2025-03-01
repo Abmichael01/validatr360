@@ -8,7 +8,9 @@ const MainLayout: React.FC = () => {
 
   return (
     <div>
+      <header className="sticky top-0 z-[999]">
       <Navbar />
+      </header>
       <main className="pb-20">
         <Outlet />
       </main>
