@@ -2,11 +2,12 @@ import * as React from "react";
 import {
   AudioWaveform,
   Command,
-  ClipboardList,
   GalleryVerticalEnd,
   Settings2,
   Users,
   BadgeCheck,
+  Filter,
+  ChartArea,
 } from "lucide-react";
 
 import { NavMain } from "@/components/Dashboard/Layouts/Sidebar/Main";
@@ -47,20 +48,24 @@ const data = {
   ],
   navMain: [
     {
-      title: "Campaigns",
+      title: "Funnels & Forms",
       url: "#",
-      icon: ClipboardList,
+      icon: Filter,
       items: [
         {
-          title: "New Campaign",
+          title: "New Funnel / Form",
           url: "#",
         },
         {
-          title: "Explorer",
+          title: "Active Funnels",
           url: "#",
         },
         {
-          title: "Quantum",
+          title: "Completed Funnels",
+          url: "#",
+        },
+        {
+          title: "Access Control",
           url: "#",
         },
       ],
@@ -80,11 +85,39 @@ const data = {
           url: "#",
         },
         {
+          title: "Warm Leads",
+          url: "#",
+        },
+        {
           title: "Cold Leads",
           url: "#",
         },
         {
-          title: "Warm Leads",
+          title: "Lead Followups",
+          url: "#",
+        },
+      ],
+    },
+
+    {
+      title: "Reports & Analytics",
+      url: "#",
+      icon: ChartArea,
+      items: [
+        {
+          title: "Campaign Performance",
+          url: "#",
+        },
+        {
+          title: "Lead Conversion Rate",
+          url: "#",
+        },
+        {
+          title: "Completed Funnels",
+          url: "#",
+        },
+        {
+          title: "Access Control",
           url: "#",
         },
       ],
@@ -97,10 +130,6 @@ const data = {
       items: [
         {
           title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
           url: "#",
         },
         {

@@ -4,7 +4,7 @@ import React from 'react'
 
 const Navbar: React.FC = () => {
   return (
-    <div className="border-b py-4 px-5 flex items-center justify-between">
+    <div className="border-b py-4 px-5 flex items-center justify-between sticky top-0">
       <SidebarTrigger />
       <div className="flex items-center gap-4">
         {/* Theme Toggle Button */}
