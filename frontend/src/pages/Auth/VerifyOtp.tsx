@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -35,7 +33,7 @@ const otpSchema = z.object({
 
 type OTPValues = z.infer<typeof otpSchema>;
 
-export function VerifyOTP() {
+export const  VerifyOTP: React.FC = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 

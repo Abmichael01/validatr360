@@ -18,7 +18,7 @@ const loginFormSchema = z.object({
 
 type LoginFormValues = z.infer<typeof loginFormSchema>
 
-export function Login({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
+export const Login: React.FC = ({ className, ...props }: React.ComponentPropsWithoutRef<"div">) => {
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {

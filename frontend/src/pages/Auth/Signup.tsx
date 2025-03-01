@@ -1,5 +1,3 @@
-"use client"
-
 import type React from "react"
 
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -26,7 +24,7 @@ const signupFormSchema = z
 
 type SignupFormValues = z.infer<typeof signupFormSchema>
 
-export function Signup({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
+export const Signup: React.FC = ({ className, ...props }: React.ComponentPropsWithoutRef<"div">) => {
   const form = useForm<SignupFormValues>({
     resolver: zodResolver(signupFormSchema),
     defaultValues: {
