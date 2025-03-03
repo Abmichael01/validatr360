@@ -1,5 +1,8 @@
 import FunnelCard from "@/components/Dashboard/Funnels/FunnelCard";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { Plus } from "lucide-react";
 import React from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
@@ -31,8 +34,19 @@ const FunnelsList: React.FC = () => {
     navigate(`/funnels/list?tab=${tab}`, { replace: true });
   };
   return (
-    <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-center">
+    <div className="space-y-6">
+      <div className="flex justify-center">
+        <div className="w-full sm:w-[80%] md:w-[70%]">
+          <Input placeholder="Search Funnels" />
+        </div>
+      </div>
+      <div className="flex justify-center">
+        <Button variant={"outline"} className="w-[90%] sm:w-[50%] py-5 sm:py-8 rounded-full sm:text-xl text-lg ">
+            <Plus className="size-6" />
+            Create New Funnel
+        </Button>
+      </div>
+      <div className="grid grid-cols-1 min-[320px]:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-center">
         {tabs.map((tab) => (
           <button
             key={tab.name}
@@ -50,10 +64,12 @@ const FunnelsList: React.FC = () => {
       <div className="mt-10 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {Array.from({ length: 15 }).map((_, index) => (
           <div key={index}>
-            <FunnelCard funnel={{
+            <FunnelCard
+              funnel={{
                 name: `Funnel ${index + 1}`,
                 conversions: Math.floor(Math.random() * 1000),
-            }}  />
+              }}
+            />
           </div>
         ))}
       </div>

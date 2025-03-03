@@ -19,7 +19,7 @@ const Hero: React.FC = () => {
         </h1>
         <div className="flex gap-5 items-center">
           <FancyButton className="rounded-full">Get Started</FancyButton>
-          <FancyButton className="rounded-full bg-transparent border text-foreground hover:text-white">
+          <FancyButton className="rounded-full bg-transparent border text-foreground hover:text-white hover:bg-transparent">
             Learn More
           </FancyButton>
         </div>

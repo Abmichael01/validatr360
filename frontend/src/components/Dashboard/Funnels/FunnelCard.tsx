@@ -1,7 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink } from "lucide-react"
+import { MoreHorizontal, Edit, Globe, Link, Trash } from "lucide-react"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { Button } from "@/components/ui/button"
 
 interface FunnelProps {
   name: string
@@ -17,14 +18,36 @@ export default function FunnelCard({
     <Card className="hover:border-primary transition-colors group relative overflow-hidden">
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <CardTitle className="text-sm font-medium">{funnel.name}</CardTitle>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="h-8 w-8 absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
-          aria-label="View funnel"
-        >
-          <ExternalLink className="h-4 w-4" />
-        </Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 absolute top-2 right-2"
+              aria-label="Funnel options"
+            >
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem>
+              <Edit className="mr-2 h-4 w-4" />
+              Edit
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Globe className="mr-2 h-4 w-4" />
+              Publish
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link className="mr-2 h-4 w-4" />
+              Copy Link
+            </DropdownMenuItem>
+            <DropdownMenuItem className="text-destructive focus:text-destructive">
+              <Trash className="mr-2 h-4 w-4" />
+              Delete
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
@@ -33,12 +56,6 @@ export default function FunnelCard({
               {funnel.conversions} conversions
             </Badge>
             <span className="text-xs text-muted-foreground">Last 30 days</span>
-          </div>
-          <div className="w-full h-1 bg-muted rounded-full overflow-hidden">
-            <div
-              className="bg-primary h-full rounded-full"
-              style={{ width: `${Math.min(funnel.conversions / 10, 100)}%` }}
-            ></div>
           </div>
         </div>
       </CardContent>
