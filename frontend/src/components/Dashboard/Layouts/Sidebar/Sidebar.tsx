@@ -48,13 +48,17 @@ const data = {
   ],
   navMain: [
     {
-      title: "Funnels & Forms",
+      title: "Funnels",
       url: "#",
       icon: Filter,
       items: [
         {
-          title: "New Funnel / Form",
-          url: "#",
+          title: "Overview",
+          url: "/funnels",
+        },
+        {
+          title: "All Funnels",
+          url: "/funnels/list",
         },
         {
           title: "Active Funnels",
@@ -65,7 +69,7 @@ const data = {
           url: "#",
         },
         {
-          title: "Access Control",
+          title: "InActive Funnels",
           url: "#",
         },
       ],

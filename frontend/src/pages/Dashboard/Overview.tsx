@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { ArrowRight } from "lucide-react"
-import LeadAnalyticsCard from "../../../components/Dashboard/Overview/LeadAnalyticsCard"
-import CampaignCard from "../../../components/Dashboard/Overview/CampaignCard"
+import LeadAnalyticsCard from "../../components/Dashboard/Overview/LeadAnalyticsCard"
+import CampaignCard from "../../components/Dashboard/Overview/CampaignCard"
 
 // Mock data for leads and campaigns with more pronounced zigzag patterns
 const leadsData = {
