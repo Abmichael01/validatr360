@@ -38,7 +38,12 @@ const AIFormBuilder: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className="space-y-6">
+        <h1 className="text-xl font-bold">AI Form Builder</h1>
+        <div className=" flex items-center gap-5 border rounded-full py-2 w-fit px-5">
+            <h1 className="font-semibold">Form Type:</h1>
+            <h1 className="rounded-full px-3 py-1 bg-primary font-semibold text-white">Standard Form</h1>
+        </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField

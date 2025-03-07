@@ -29,6 +29,7 @@ export const Overview: React.FC = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "Summer Sales",
+      leadsTag: "Summer Leads"
     },
   });
 
@@ -103,7 +104,7 @@ export const Overview: React.FC = () => {
           </form>
         </Form>
       </div>
-      <div className="w-[40%] border-l h-[450px] shrink-0"></div>
+      <div className="w-[40%] border-l h-[450px] shrink-0 hidden lg:flex"></div>
     </div>
   );
 };
