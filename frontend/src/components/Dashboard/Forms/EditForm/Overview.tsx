@@ -83,8 +83,8 @@ export const Overview: React.FC = () => {
                 <CardTitle>Form</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <div className="border rounded-xl relative h-[300px] flex items-center justify-center bg-gray-100">
-                  <Badge className="absolute top-2 left-2 bg-gray-600">Form preview</Badge>
+                <div className="border rounded-xl relative h-[300px] flex items-center justify-center bg-gray-100 dark:bg-white/10">
+                  <Badge className="absolute top-2 left-2 bg-gray-600 ">Form preview</Badge>
                   <p className="text-foreground/40">You haven't built any form</p>
                 </div>
                 <div>
