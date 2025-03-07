@@ -14,7 +14,7 @@ const DashboardLayout: React.FC = () => {
         <AppSidebar />
         <div className="shrink- w-full relative">
           <Navbar />
-          <div className="p-2 min-[500px]:p-5">
+          <div className="p-2 py-5 min-[500px]:p-5 lg:p-10 bg-gra">
             <Outlet />
           </div>
         </div>

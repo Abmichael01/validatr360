@@ -64,7 +64,7 @@ const campaignsData = [
 
 export function Overview() {
   return (
-    <div className="p-6 space-y-6">
+    <div className="space-y-6">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <LeadAnalyticsCard title="Total Leads" data={leadsData.total} />
         <LeadAnalyticsCard title="Hot Leads" data={leadsData.hot} />

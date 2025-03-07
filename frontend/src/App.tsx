@@ -9,8 +9,11 @@ import { Signup } from './pages/Auth/Signup';
 import { ForgotPassword } from './pages/Auth/ForgotPassword';
 import { VerifyOTP } from './pages/Auth/VerifyOtp';
 import { ResetPassword } from './pages/Auth/ResetPassword';
-import { FunnelsOverview } from './pages/Dashboard/Funnels/Overview';
-import FunnelsList from './pages/Dashboard/Funnels/List';
+import { FormsOverview } from './pages/Dashboard/Forms/Overview';
+import FunnelsList from './pages/Dashboard/Forms/List';
+import CreateFunnel from './pages/Dashboard/Forms/CreateForm';
+import EditFunnel from './pages/Dashboard/Forms/EditForm';
+import AIFormBuilder from './components/Dashboard/Forms/EditForm/AIFormBuilder';
 
 function App() {
   return (
@@ -23,9 +26,12 @@ function App() {
 
           <Route path="/" element={<DashboardLayout />}>
             <Route path="dashboard" element={<Overview />} />
-            <Route path='funnels'>
-              <Route index element={<FunnelsOverview />} />
+            <Route path='forms'>
+              <Route index element={<FormsOverview />} />
               <Route path="list" element={<FunnelsList />} />
+              <Route path="create-form" element={<CreateFunnel />} />
+              <Route path=":id/edit" element={<EditFunnel />} />
+              <Route path=":id/edit/ai-form-builder" element={<AIFormBuilder />} />
             </Route>
 
           </Route>

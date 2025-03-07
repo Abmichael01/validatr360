@@ -4,20 +4,20 @@ import { Edit, Globe, Link, Trash, MoreVertical } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 
-interface FunnelProps {
+interface FormProps {
   name: string
-  conversions: number
+  leads: number
 }
 
-export default function FunnelCard({
-  funnel,
+export default function FormCard({
+  form,
 }: {
-  funnel: FunnelProps
+  form: FormProps
 }) {
   return (
-    <Card className="hover:border-primary transition-colors group relative overflow-hidden">
+    <Card className="hover:border-primary/50 transition-colors group relative overflow-hidden">
       <CardHeader className="flex flex-row items-center justify-between pb-2">
-        <CardTitle className="text-sm font-medium">{funnel.name}</CardTitle>
+        <CardTitle className="text-sm font-medium">{form.name}</CardTitle>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
@@ -53,7 +53,7 @@ export default function FunnelCard({
         <div className="space-y-3">
           <div className="flex justify-between items-center">
             <Badge variant="secondary" className="bg-primary/10 hover:bg-primary/20 text-primary">
-              {funnel.conversions} conversions
+              {form.leads} leads
             </Badge>
             <span className="text-xs text-muted-foreground">Last 30 days</span>
           </div>

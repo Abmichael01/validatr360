@@ -1,26 +1,26 @@
-import FunnelCard from "@/components/Dashboard/Funnels/FunnelCard";
+import FormCard from "@/components/Dashboard/Forms/FormCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Plus } from "lucide-react";
 import React from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 const tabs = [
   {
-    name: "All Funnels",
+    name: "All Forms",
     id: "all",
   },
   {
-    name: "Active Funnels",
+    name: "Active Forms",
     id: "active",
   },
   {
-    name: "Completed Funnels",
+    name: "Completed Forms",
     id: "completed",
   },
   {
-    name: "InActive Funnels",
+    name: "InActive Forms",
     id: "inactive",
   },
 ];
@@ -31,20 +31,25 @@ const FunnelsList: React.FC = () => {
   const navigate = useNavigate();
 
   const handleTabChange = (tab: string) => {
-    navigate(`/funnels/list?tab=${tab}`, { replace: true });
+    navigate(`/forms/list?tab=${tab}`, { replace: true });
   };
   return (
     <div className="space-y-6">
       <div className="flex justify-center">
         <div className="w-full sm:w-[80%] md:w-[70%]">
-          <Input placeholder="Search Funnels" />
+          <Input placeholder="Search Forms" />
         </div>
       </div>
       <div className="flex justify-center">
-        <Button variant={"outline"} className="w-[90%] sm:w-[50%] py-5 sm:py-8 rounded-full sm:text-xl text-lg ">
+        <Link to="/forms/create-form" className="w-[90%] sm:w-[50%]">
+          <Button
+            variant={"outline"}
+            className="w-full py-5 sm:py-8 rounded-full sm:text-xl text-lg "
+          >
             <Plus className="size-6" />
-            Create New Funnel
-        </Button>
+            Create New Form
+          </Button>
+        </Link>
       </div>
       <div className="grid grid-cols-1 min-[320px]:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-center">
         {tabs.map((tab) => (
@@ -64,10 +69,10 @@ const FunnelsList: React.FC = () => {
       <div className="mt-10 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {Array.from({ length: 15 }).map((_, index) => (
           <div key={index}>
-            <FunnelCard
-              funnel={{
-                name: `Funnel ${index + 1}`,
-                conversions: Math.floor(Math.random() * 1000),
+            <FormCard
+              form={{
+                name: `Form ${index + 1}`,
+                leads: Math.floor(Math.random() * 1000),
               }}
             />
           </div>

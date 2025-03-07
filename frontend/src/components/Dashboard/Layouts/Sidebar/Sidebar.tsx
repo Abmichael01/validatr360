@@ -48,28 +48,29 @@ const data = {
   ],
   navMain: [
     {
-      title: "Funnels",
+      title: "Forms",
       url: "#",
       icon: Filter,
+      isActive: true,
       items: [
         {
           title: "Overview",
-          url: "/funnels",
+          url: "/forms",
         },
         {
-          title: "All Funnels",
-          url: "/funnels/list",
+          title: "All Forms",
+          url: "/forms/list",
         },
         {
-          title: "Active Funnels",
+          title: "Active Forms",
           url: "#",
         },
         {
-          title: "Completed Funnels",
+          title: "Completed Forms",
           url: "#",
         },
         {
-          title: "InActive Funnels",
+          title: "InActive Forms",
           url: "#",
         },
       ],
@@ -78,7 +79,6 @@ const data = {
       title: "Leads",
       url: "#",
       icon: Users,
-      isActive: true,
       items: [
         {
           title: "Overview",
