@@ -1,4 +1,4 @@
-import { ChevronRight, LayoutDashboard, type LucideIcon } from "lucide-react";
+import { ChevronRight, FilterIcon, LayoutDashboard, type LucideIcon } from "lucide-react";
 
 import {
   Collapsible,
@@ -40,6 +40,14 @@ export function NavMain({
             <Link to="/dashboard">
               <LayoutDashboard />
               <span>Overview</span>
+            </Link>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+        <SidebarMenuItem>
+          <SidebarMenuButton asChild tooltip={"Overview"}>
+            <Link to="/forms">
+              <FilterIcon />
+              <span>Form</span>
             </Link>
           </SidebarMenuButton>
         </SidebarMenuItem>

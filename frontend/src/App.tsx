@@ -14,6 +14,7 @@ import FunnelsList from './pages/Dashboard/Forms/List';
 import CreateFunnel from './pages/Dashboard/Forms/CreateForm';
 import EditFunnel from './pages/Dashboard/Forms/EditForm';
 import AIFormBuilder from './components/Dashboard/Forms/EditForm/AIFormBuilder';
+import FormBuilder from './pages/Dashboard/Forms/FormBuilder';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
               <Route path="list" element={<FunnelsList />} />
               <Route path="create-form" element={<CreateFunnel />} />
               <Route path=":id/edit" element={<EditFunnel />} />
+              <Route path=":id/edit/form-builder" element={<FormBuilder />} />
               <Route path=":id/edit/ai-form-builder" element={<AIFormBuilder />} />
             </Route>
 

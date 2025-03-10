@@ -12,10 +12,10 @@ const Hero: React.FC = () => {
         <p className="border px-10 py-1 rounded-full border-primary text-primary font-semibold text-sm">
           Conversion Intelligence System
         </p>
-        <h1 className="font-semibold max-[300px]:text-4xl text-5xl sm:text-6xl text-center">
-          Filter Out <span className="text-primary">Junks.</span> keep <br />{" "}
-          The <span className="text-primary">Best</span> Leads <br />
-          Close <span className="text-primary">More</span> Deals
+        <h1 className="font-semibold font-secondary max-[300px]:text-4xl text-5xl sm:text-6xl text-center">
+          Filter Out <span className="text-primary font-secondary">Junks.</span> keep <br />{" "}
+          The <span className="text-primary font-secondary">Best</span> Leads <br />
+          Close <span className="text-primary font-secondary">More</span> Deals
         </h1>
         <div className="flex gap-5 items-center">
           <FancyButton className="rounded-full">Get Started</FancyButton>

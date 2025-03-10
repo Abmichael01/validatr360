@@ -6,7 +6,6 @@ import {
   Settings2,
   Users,
   BadgeCheck,
-  Filter,
   ChartArea,
 } from "lucide-react";
 
@@ -47,34 +46,7 @@ const data = {
     },
   ],
   navMain: [
-    {
-      title: "Forms",
-      url: "#",
-      icon: Filter,
-      isActive: true,
-      items: [
-        {
-          title: "Overview",
-          url: "/forms",
-        },
-        {
-          title: "All Forms",
-          url: "/forms/list",
-        },
-        {
-          title: "Active Forms",
-          url: "#",
-        },
-        {
-          title: "Completed Forms",
-          url: "#",
-        },
-        {
-          title: "InActive Forms",
-          url: "#",
-        },
-      ],
-    },
+
     {
       title: "Leads",
       url: "#",
