@@ -3,10 +3,7 @@ import { Separator } from "@/components/ui/separator"
 import { ArrowRight } from "lucide-react"
 import LeadAnalyticsCard from "../../components/Dashboard/Overview/LeadAnalyticsCard"
 import CampaignCard from "../../components/Dashboard/Overview/CampaignCard"
-<<<<<<< HEAD
-=======
 import AuthDebug from "../../components/Dashboard/Layouts/AuthDebug"
->>>>>>> merge-collab
 
 // Mock data for leads and campaigns with more pronounced zigzag patterns
 const leadsData = {
@@ -92,14 +89,11 @@ export function Overview() {
           ))}
         </div>
       </div>
-<<<<<<< HEAD
-=======
 
       <div className="mt-8">
         <h2 className="text-2xl font-semibold tracking-tight mb-4">Authentication Status</h2>
         <AuthDebug />
       </div>
->>>>>>> merge-collab
     </div>
   )
 }

@@ -1,10 +1,5 @@
 import ThemeToggle from '@/components/others/ThemeToggle'
 import { SidebarTrigger } from "@/components/ui/sidebar";
-<<<<<<< HEAD
-import React from 'react'
-
-const Navbar: React.FC = () => {
-=======
 import React, { useEffect } from 'react'
 import { LogOut, User, Bug } from 'lucide-react'
 import { useAuthStore } from '@/stores/authStore'
@@ -48,7 +43,6 @@ const Navbar: React.FC = () => {
     navigate('/dashboard/auth-test');
   }
 
->>>>>>> merge-collab
   return (
     <div className="border-b py-4 px-5 flex items-center justify-between sticky top-0 bg-background z-[10]">
       <SidebarTrigger />
@@ -56,17 +50,6 @@ const Navbar: React.FC = () => {
         {/* Theme Toggle Button */}
         <ThemeToggle />
 
-<<<<<<< HEAD
-        {/* User Profile Section */}
-        <div className="flex items-center gap-2">
-          <div className="size-10 flex items-center justify-center rounded-full bg-primary text-white">
-            U
-          </div>
-        </div>
-        {/* <button className="p-2 rounded-lg transition-all hover:bg-gray-200 dark:hover:bg-gray-700" onClick={()=> logoutUser()}>
-          <LogOutIcon />
-        </button> */}
-=======
         {/* Auth Test Button */}
         <Button variant="outline" size="sm" onClick={goToAuthTest} className="mr-2">
           <Bug className="mr-2 h-4 w-4" /> Auth Test
@@ -104,7 +87,6 @@ const Navbar: React.FC = () => {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
->>>>>>> merge-collab
       </div>
     </div>
   )
