@@ -7,7 +7,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
@@ -32,8 +31,35 @@ export default function FormCard({ form }: { form: FormProps }) {
           />
           <CardTitle className="text-sm font-medium">{form.name}</CardTitle>
         </div>
-        <FormMore />
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button
+              className="absolute top-2 right-2 px-3 py-2 hover:bg-gray-100 rounded-md outline-0 "
+            >
+              <MoreVertical className="h-4 w-4" />
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem>
+              <Edit className="mr-2 h-4 w-4" />
+              Edit
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Globe className="mr-2 h-4 w-4" />
+              Publish
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link className="mr-2 h-4 w-4" />
+              Copy Link
+            </DropdownMenuItem>
+            <DropdownMenuItem className="text-destructive focus:text-destructive">
+              <Trash className="mr-2 h-4 w-4" />
+              Delete
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </CardHeader>
+      
       <CardContent>
         <div className="space-y-3">
           <div className="flex justify-between items-center">
@@ -68,37 +94,8 @@ export default function FormCard({ form }: { form: FormProps }) {
   );
 }
 
-const FormMore: React.FC = () => {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="h-8 w-8 absolute top-2 right-2"
-          aria-label="Funnel options"
-        >
-          <MoreVertical className="h-4 w-4" />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem>
-          <Edit className="mr-2 h-4 w-4" />
-          Edit
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Globe className="mr-2 h-4 w-4" />
-          Publish
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Link className="mr-2 h-4 w-4" />
-          Copy Link
-        </DropdownMenuItem>
-        <DropdownMenuItem className="text-destructive focus:text-destructive">
-          <Trash className="mr-2 h-4 w-4" />
-          Delete
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-};
+// const FormMore: React.FC = () => {
+//   return (
+
+//   );
+// };
