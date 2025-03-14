@@ -24,7 +24,7 @@ const profileFormSchema = z.object({
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 export const Profile = () => {
-  const { user, isLoading, error, checkAuth } = useAuthStore();
+  const { user, isLoading, checkAuth } = useAuthStore();
   const [updateLoading, setUpdateLoading] = useState(false);
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const [updateError, setUpdateError] = useState<string | null>(null);
