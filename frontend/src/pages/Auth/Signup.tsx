@@ -1,5 +1,6 @@
-import type React from "react"
+"use client"
 
+import type React from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -8,23 +9,28 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { useAuthStore } from "@/stores/authStore"
+import { useEffect } from "react"
+import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Loader2 } from "lucide-react"
 
-const signupFormSchema = z
-  .object({
-    name: z.string().min(2, { message: "Name must be at least 2 characters" }),
-    email: z.string().email({ message: "Please enter a valid email address" }),
-    password: z.string().min(8, { message: "Password must be at least 8 characters" }),
-    confirmPassword: z.string().min(8, { message: "Password must be at least 8 characters" }),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords do not match",
-    path: ["confirmPassword"],
-  })
+const signupFormSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters" }),
+  email: z.string().email({ message: "Please enter a valid email address" }),
+  password: z.string().min(8, { message: "Password must be at least 8 characters" }),
+  confirmPassword: z.string().min(8, { message: "Password must be at least 8 characters" }),
+}).refine((data) => data.password === data.confirmPassword, {
+  message: "Passwords do not match",
+  path: ["confirmPassword"],
+})
 
 type SignupFormValues = z.infer<typeof signupFormSchema>
 
 export const Signup: React.FC = ({ className, ...props }: React.ComponentPropsWithoutRef<"div">) => {
+  const navigate = useNavigate()
+  const { register, isLoading, error, isAuthenticated, clearError } = useAuthStore()
+  
   const form = useForm<SignupFormValues>({
     resolver: zodResolver(signupFormSchema),
     defaultValues: {
@@ -35,9 +41,18 @@ export const Signup: React.FC = ({ className, ...props }: React.ComponentPropsWi
     },
   })
 
-  function onSubmit(data: SignupFormValues) {
-    console.log(data)
-    // Handle signup logic here
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/dashboard")
+    }
+    // Clear any previous errors when component mounts
+    clearError()
+  }, [isAuthenticated, navigate, clearError])
+
+  async function onSubmit(data: SignupFormValues) {
+    const { name, email, password } = data
+    await register({ name, email, password })
   }
 
   return (
@@ -49,6 +64,11 @@ export const Signup: React.FC = ({ className, ...props }: React.ComponentPropsWi
         </CardHeader>
         <CardContent>
           <div className="grid gap-6">
+            {error && (
+              <Alert variant="destructive">
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
             <div className="flex flex-col gap-4">
               <Button variant="outline" className="w-full">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="mr-2 h-4 w-4">
@@ -79,7 +99,7 @@ export const Signup: React.FC = ({ className, ...props }: React.ComponentPropsWi
                   name="name"
                   render={({ field }) => (
                     <FormItem className="grid gap-2">
-                      <FormLabel htmlFor="name">Full Name</FormLabel>
+                      <FormLabel htmlFor="name">Name</FormLabel>
                       <FormControl>
                         <Input id="name" placeholder="John Doe" {...field} />
                       </FormControl>
@@ -126,8 +146,15 @@ export const Signup: React.FC = ({ className, ...props }: React.ComponentPropsWi
                     </FormItem>
                   )}
                 />
-                <Button type="submit" className="w-full">
-                  Sign Up
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Creating account...
+                    </>
+                  ) : (
+                    "Create account"
+                  )}
                 </Button>
                 <div className="text-center text-sm">
                   Already have an account?{" "}

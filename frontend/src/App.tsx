@@ -15,8 +15,22 @@ import CreateFunnel from './pages/Dashboard/Forms/CreateForm';
 import EditFunnel from './pages/Dashboard/Forms/EditForm';
 import AIFormBuilder from './components/Dashboard/Forms/EditForm/AIFormBuilder';
 import FormBuilder from './pages/Dashboard/Forms/FormBuilder';
+import { ProtectedRoute } from './components/ProtectedRoute';
+import { useEffect } from 'react';
+import { useAuthStore } from './stores/authStore';
+import { Profile } from './pages/Dashboard/Profile';
+import AuthTest from './pages/Dashboard/AuthTest';
 
 function App() {
+  const { checkAuth } = useAuthStore();
+
+  // Check authentication status when app loads
+  useEffect(() => {
+    // Only run once when the component mounts
+    checkAuth();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Empty dependency array to ensure it only runs once
+
   return (
     <>
       <Router>
@@ -25,17 +39,21 @@ function App() {
             <Route index element={<Home />} />
           </Route>
 
-          <Route path="/" element={<DashboardLayout />}>
-            <Route path="dashboard" element={<Overview />} />
-            <Route path='forms'>
-              <Route index element={<FormsOverview />} />
-              <Route path="list" element={<FunnelsList />} />
-              <Route path="create-form" element={<CreateFunnel />} />
-              <Route path=":id/edit" element={<EditFunnel />} />
-              <Route path=":id/edit/form-builder" element={<FormBuilder />} />
-              <Route path=":id/edit/ai-form-builder" element={<AIFormBuilder />} />
+          {/* Protected Dashboard Routes */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<DashboardLayout />}>
+              <Route path="dashboard" element={<Overview />} />
+              <Route path="dashboard/profile" element={<Profile />} />
+              <Route path="dashboard/auth-test" element={<AuthTest />} />
+              <Route path='forms'>
+                <Route index element={<FormsOverview />} />
+                <Route path="list" element={<FunnelsList />} />
+                <Route path="create-form" element={<CreateFunnel />} />
+                <Route path=":id/edit" element={<EditFunnel />} />
+                <Route path=":id/edit/form-builder" element={<FormBuilder />} />
+                <Route path=":id/edit/ai-form-builder" element={<AIFormBuilder />} />
+              </Route>
             </Route>
-
           </Route>
 
           <Route path="/auth" element={<AuthLayout />}>

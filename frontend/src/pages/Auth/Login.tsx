@@ -9,7 +9,11 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { useAuthStore } from "@/stores/authStore"
+import { useEffect } from "react"
+import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Loader2 } from "lucide-react"
 
 const loginFormSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
@@ -19,6 +23,9 @@ const loginFormSchema = z.object({
 type LoginFormValues = z.infer<typeof loginFormSchema>
 
 export const Login: React.FC = ({ className, ...props }: React.ComponentPropsWithoutRef<"div">) => {
+  const navigate = useNavigate()
+  const { login, isLoading, error, isAuthenticated, clearError } = useAuthStore()
+  
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -27,9 +34,23 @@ export const Login: React.FC = ({ className, ...props }: React.ComponentPropsWit
     },
   })
 
-  function onSubmit(data: LoginFormValues) {
-    console.log(data)
-    // Handle login logic here
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/dashboard")
+    }
+    // Clear any previous errors when component mounts
+    clearError()
+  }, [isAuthenticated, navigate, clearError])
+
+  async function onSubmit(data: LoginFormValues) {
+    console.log('Login form submitted:', data);
+    try {
+      await login(data);
+      console.log('Login completed');
+    } catch (error) {
+      console.error('Login error in component:', error);
+    }
   }
 
   return (
@@ -41,6 +62,11 @@ export const Login: React.FC = ({ className, ...props }: React.ComponentPropsWit
         </CardHeader>
         <CardContent>
           <div className="grid gap-6">
+            {error && (
+              <Alert variant="destructive">
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
             <div className="flex flex-col gap-4">
               <Button variant="outline" className="w-full">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="mr-2 h-4 w-4">
@@ -97,8 +123,15 @@ export const Login: React.FC = ({ className, ...props }: React.ComponentPropsWit
                     </FormItem>
                   )}
                 />
-                <Button type="submit" className="w-full">
-                  Login
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Logging in...
+                    </>
+                  ) : (
+                    "Login"
+                  )}
                 </Button>
                 <div className="text-center text-sm">
                   Don&apos;t have an account?{" "}
