@@ -16,7 +16,7 @@ const app = express();
 // Enable CORS for specific origins
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'http://localhost:5173', process.env.FRONTEND_URL].filter(Boolean),
+    origin: ['http://localhost:3000', 'http://localhost:5173', process.env.FRONTEND_URL, "https://validatr360.onrender.com"].filter(Boolean),
     credentials: true,
   })
 );
