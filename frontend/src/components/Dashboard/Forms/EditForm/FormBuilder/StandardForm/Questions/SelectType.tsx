@@ -18,11 +18,12 @@ import { Trash2 } from "lucide-react"
 import { useStandarFormStore } from "@/stores/standardFormStore"
 import { Field } from "@/types"
 import { useFormField } from "@/hooks/useFormField"
-
+import { Checkbox } from "@/components/ui/checkbox"
 
 const formSchema = z.object({
   answerType: z.string(),
   question: z.string().min(2, "Question must be at least 2 characters."),
+  required: z.boolean().default(false),
   options: z
     .array(
       z.object({
@@ -45,7 +46,8 @@ const SelectType: React.FC<SelectTypeProps> = ({ answerType, field }) => {
     defaultValues: {
       answerType: answerType,
       question: field?.question || "",
-      options: field?.options || [{ label: "" }], // Start with one empty option
+      required: field?.required || false, // Default required field
+      options: field?.options || [{ label: "" }],
     },
   })
   const { submitText } = useStandarFormStore()
@@ -58,7 +60,6 @@ const SelectType: React.FC<SelectTypeProps> = ({ answerType, field }) => {
 
   function onSubmit(values: SelectFieldFormData) {
     console.log("Select Field Data:", values)
-
     add(values)
   }
 
@@ -76,6 +77,23 @@ const SelectType: React.FC<SelectTypeProps> = ({ answerType, field }) => {
                 <Input placeholder="Type your question here" {...field} />
               </FormControl>
               <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {/* Required Checkbox */}
+        <FormField
+          control={form.control}
+          name="required"
+          render={({ field }) => (
+            <FormItem className="flex items-center gap-2">
+              <FormControl>
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <FormLabel>Required</FormLabel>
             </FormItem>
           )}
         />
@@ -98,7 +116,7 @@ const SelectType: React.FC<SelectTypeProps> = ({ answerType, field }) => {
                     variant="destructive"
                     size="icon"
                     onClick={() => remove(index)}
-                    disabled={fields.length === 1} // Prevent removing the last option
+                    disabled={fields.length === 1}
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>

@@ -20,6 +20,7 @@ import { useEffect } from 'react';
 import { useAuthStore } from './stores/authStore';
 import { Profile } from './pages/Dashboard/Profile';
 import AuthTest from './pages/Dashboard/AuthTest';
+import Form from './pages/Form/Form';
 
 function App() {
   const { checkAuth } = useAuthStore();
@@ -37,6 +38,10 @@ function App() {
         <Routes>
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Home />} />
+          </Route>
+
+          <Route path="/form">
+            <Route path=":id" element={<Form />} />
           </Route>
 
           {/* Protected Dashboard Routes */}
