@@ -12,40 +12,71 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
-import { useStandarFormStore } from "@/stores/standardFormStore";
+import { Checkbox } from "@/components/ui/checkbox";
+import { useStandardFormStore } from "@/stores/standardFormStore";
 import { Field } from "@/types";
 import { useFormField } from "@/hooks/useFormField";
 
-const formSchema = z.object({
+const formSchema = z
+  .object({
     answerType: z.literal("textarea"),
-  question: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-});
+    question: z.string().optional(), // Initially optional
+    required: z.boolean(),
+  })
+  .superRefine((data, ctx) => {
+    // Apply validation only if "required" is checked
+    if (data.required && (!data.question || data.question.trim().length < 2)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["question"],
+        message: "Question is required and must be at least 2 characters.",
+      });
+    }
+  });
 
 interface Props {
-    field?: Field;
+  field?: Field;
 }
 
 const TextareaType: React.FC<Props> = ({ field }) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-        question: field?.question  || "",
-        answerType: "textarea",
+      question: field?.question || "",
+      answerType: "textarea",
+      required: field?.required ?? false,
     },
   });
-  const { submitText } = useStandarFormStore()
-  const { add } = useFormField()
 
-  // 2. Define a submit handler.
+  const { submitText } = useStandardFormStore();
+  const { add } = useFormField();
+
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-    add(values)
+    add(values as Field);
   }
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        {/* Required Checkbox */}
+        <FormField
+          control={form.control}
+          name="required"
+          render={({ field }) => (
+            <FormItem className="flex items-center space-x-2">
+              <FormControl>
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <FormLabel>Required</FormLabel>
+            </FormItem>
+          )}
+        />
+
+        {/* Question Input */}
         <FormField
           control={form.control}
           name="question"
@@ -53,13 +84,19 @@ const TextareaType: React.FC<Props> = ({ field }) => {
             <FormItem>
               <FormLabel>Question</FormLabel>
               <FormControl>
-                <Textarea placeholder="Type your question here" {...field} />
+                <Textarea
+                  placeholder="Type your question here"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" className="float-right"> {submitText} </Button>
+
+        <Button type="submit" className="float-right">
+          {submitText}
+        </Button>
       </form>
     </Form>
   );

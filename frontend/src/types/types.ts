@@ -11,5 +11,5 @@ export type Field = {
     options?: {
         label: string;
     }[];
-    required: boolean;
+    required?: boolean;
 }

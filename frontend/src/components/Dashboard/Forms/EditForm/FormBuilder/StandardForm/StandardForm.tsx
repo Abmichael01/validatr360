@@ -1,9 +1,9 @@
 import React from "react";
 import Field from "./Field";
-import { useStandarFormStore } from "@/stores/standardFormStore";
+import { useStandardFormStore } from "@/stores/standardFormStore";
 
 const StandardForm: React.FC = () => {
-  const { fields } = useStandarFormStore();
+  const { fields } = useStandardFormStore();
   return (
     <div className="space-y-5">
       <h1 className="font-semibold">Standard Form Builder</h1>

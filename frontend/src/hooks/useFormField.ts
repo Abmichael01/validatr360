@@ -1,8 +1,8 @@
-import { useStandarFormStore } from "@/stores/standardFormStore"
+import { useStandardFormStore } from "@/stores/standardFormStore"
 import { Field } from "@/types"
 
 export const useFormField = () => {
-    const { addField, removeField } = useStandarFormStore.getState()
+    const { addField, removeField } = useStandardFormStore.getState()
 
     const add = (field: Field) => {
         addField(field)

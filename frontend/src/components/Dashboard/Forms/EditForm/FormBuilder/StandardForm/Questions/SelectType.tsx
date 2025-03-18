@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Trash2 } from "lucide-react"
-import { useStandarFormStore } from "@/stores/standardFormStore"
+import { useStandardFormStore } from "@/stores/standardFormStore"
 import { Field } from "@/types"
 import { useFormField } from "@/hooks/useFormField"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -50,7 +50,7 @@ const SelectType: React.FC<SelectTypeProps> = ({ answerType, field }) => {
       options: field?.options || [{ label: "" }],
     },
   })
-  const { submitText } = useStandarFormStore()
+  const { submitText } = useStandardFormStore()
   const { add } = useFormField()
 
   const { fields, append, remove } = useFieldArray({

@@ -10,7 +10,7 @@ interface State {
     removeField: (index: number) => void;
 }
 
-export const useStandarFormStore = create<State>((set) => ({
+export const useStandardFormStore = create<State>((set) => ({
     fields: [
         {
             id: 1,
@@ -21,6 +21,7 @@ export const useStandarFormStore = create<State>((set) => ({
                 { label: "On-site" },
                 { label: "Hybrid" }
             ],
+            required: true
         },
         {
             id: 2,
@@ -32,6 +33,7 @@ export const useStandarFormStore = create<State>((set) => ({
                 { label: "C#" },
                 { label: "Java" }
             ],
+            required: true
         },
         {
             id: 3,
@@ -43,6 +45,7 @@ export const useStandarFormStore = create<State>((set) => ({
                 { label: "Fullstack Developer" },
                 { label: "DevOps Engineer" }
             ],
+            required: true
         },
         {
             id: 4,
